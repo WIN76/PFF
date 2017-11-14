@@ -1,0 +1,13 @@
+pff_user_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: PFFUserBundle:Default:index }
+
+pff_listeUtilisateur:
+    path:     /listeUtil
+    defaults: { _controller: PFFUserBundle:Default:listeUtil }
+
+pff_user_supprime:
+    path:     /suppUtil/{id}
+    defaults: { _controller: PFFUserBundle:Default:suppUtil }
+    requirements:
+        id: \d+

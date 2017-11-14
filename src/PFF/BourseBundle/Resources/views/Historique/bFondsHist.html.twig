@@ -1,0 +1,204 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <style>
+        .ta{
+            display:block;
+        }
+        .ta1{
+            display:inline-block;
+            width:32%;
+        }
+        .ta2{
+            display:inline-block;
+            width:35%;
+        }
+        .ta3{
+            display:inline-block;
+            width:20%;
+        }
+        .imprimer
+        {
+            background-color:#1470c0;
+            color:white;
+            text-decoration:none;
+            margin-left:100%;
+            font-size:1.3em;
+            /*padding:3px;*/
+            border-radius:5px;
+            border:2px inset white;
+        }
+    </style>
+    <div id="content" class="span10" xmlns="http://www.w3.org/1999/html">
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a href="{{ path('index') }}">Home</a>
+                <i class="icon-angle-right"></i>
+            </li>
+            <li><a href="#">Table Formation</a></li>
+               <!--li><a href="#" onclick="javascript:window.print()" class="imprimer" >Imprimer</a></li-->
+        </ul>
+
+        <div class="row-fluid sortable">
+            <table>
+                <tr>
+                    <td><b>Matricule</b>:</td>
+                    <td><div class="col-md-2"><input  disabled id="disabledInput" value='{{ bene.NumMlle }}' disabled=""></div></td>
+                </tr>
+            </table>
+            <br>
+            <div class="ta">
+                <table class="ta1">
+                    <tr>
+                        <td><b>Nom</b>:</td>
+                        <td><input  disabled id="disabledInput" value='{{ bene.Nom }}' disabled=""></td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Niveau</b>:</td>
+                        <td><input  disabled id="disabledInput" value='{{ bene.Niveau }}' disabled=""></td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td><b>Statut</b>:</td>
+                        <td><input  disabled id="disabledInput" value='{{ bene.Statut  }}' disabled=""></td>
+
+                </table>
+                <table class="ta2">
+                    <tr>
+                        <td><b>Prènom</b>:</td>
+                        <td><input  disabled id="disabledInput" value='{{ bene.Prenom  }}' disabled=""></td>
+                    </tr>
+                    <tr>
+                        <td><b>Naissance</b>:</td>
+                        <td><input  disabled id="disabledInput" value='{{ bene.DateNais |date('d/m/Y') }}' disabled=""></td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Faculté</b>:</td>
+                        <td><input  disabled id="disabledInput" value='{{ bene.faculte  }}' disabled=""></td>
+                    </tr>
+
+                </table>
+                <table class="ta3">
+                    <tr>
+                        <td><b>Téléphone</b>:</td>
+                        <td><input  disabled id="disabledInput" value='{{ bene.NumTel  }}'  disabled=""></td>
+                    </tr>
+                    <tr>
+                        <td><b>Email</b>:</td>
+                        <td><input  disabled id="disabledInput" value='{{ bene.Email  }}'  disabled=""></td>
+                    </tr>
+                    </tr>
+                    <td><b>Adresse</b>:</td>
+                    <td><input  disabled id="disabledInput" value='{{ bene.Adresse }}' disabled=""></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="box span6">
+                <div class="box-header" data-original-title>
+                    <h2><i class="icon-align-justify"></i><span class="break"></span>Formations</h2>
+
+                </div>
+
+                <div class="box-content">
+
+                    <h2 style="text-align: center;"><u>Formations</u> </h2>
+                    <table class="table ">
+
+                        {% set sommeFormation=0 %}
+                        <thead>
+                        <tr>
+
+                            <th>Diplome</th>
+                            <th>Date Début</th>
+                            <th>Date Fin</th>
+                            <th>Montant</th>
+                            <th>Lieu</th>
+                            <th>Spécialité</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for f in formation %}
+                            <tr>
+                                <td class="center">{{ f.Diplome }}</td>
+                                <td class="center">{{ f.DateDebut }}</td>
+                                <td class="center">{{ f.DateFin }}</td>
+                                <td class="center">{{ f.MontF }}</td>
+                                <td class="center">{{ f.LieuF }}</td>
+                                <td class="center">{{ f.Specialite }}</td>
+                            </tr>
+                            {% set sommeFormation = sommeFormation+f.MontF %}
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                    <p style="text-align: center;">Le coût des formations s'éléve à: {{ sommeFormation }}F CFA</p>
+                </div>
+
+            </div><!--/span-->
+
+
+            <div class="box span5">
+                <div class="box-header" data-original-title>
+                    <h2><i class="icon-align-justify"></i><span class="break"></span>Fonds</h2>
+                    <div class="box-icon">
+                        <!--a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a-->
+                    </div>
+                </div>
+                <h2 style="text-align: center;"><u>Les fonds associés aux formations</u> </h2>
+                <table class="table table-striped table-bordered ">
+                    {% for flash_message in app.session.flashBag.get('info') %}
+                        <div class="alert alert-success">
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
+                    {% for flash_message in app.session.flashBag.get('notice') %}
+                        <div class="alert alert-success">
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
+                    {% for flash_message in app.session.flashBag.get('alerte') %}
+                        <div class="alert alert-success">
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
+
+                    {% set sommfonds=0 %}
+                    <thead>
+                    <tr>
+
+                        <th>Année</th>
+                        <th>Type</th>
+                        <th>Montant</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for b in bform %}
+                        <tr>
+                            <td class="center">{{ b.Fonds.Annee }}</td>
+                            <td class="center">{{ b.Fonds.Type }}</td>
+                            <td class="center">{{ b.Fonds.Montant }}</td>
+                            <td class="center">{{ b.date  | date('d/m/Y')}}</td>
+                        </tr>
+                        {% set sommfonds=sommfonds+b.Fonds.Montant %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <p style="text-align: center;">La somme des fonds est: {{ sommfonds }} F CFA</p>
+            </div>
+
+        </div><!--/span-->
+
+        <h3 style="text-align: center;">{% set totale=sommeFormation+sommfonds %}
+            Le coût total est: {{ totale }} F CFA</h3>
+    </div><!--/row-->
+    </div><!--/.fluid-container-->
+
+    <!-- end: Content -->
+    </div><!--/#content.span10-->
+    </div><!--/fluid-row-->
+{% endblock %}

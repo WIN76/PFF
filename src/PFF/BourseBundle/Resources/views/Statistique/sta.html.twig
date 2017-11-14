@@ -1,0 +1,126 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <div id="content" class="span10">
+
+        <link rel="stylesheet" href="{{ asset('bundles/pffbourse/templates/lib/morris/morris.css') }}">
+
+        <script src="{{ asset('bundles/pffbourse/templates/lib/jquery/jquery-1.12.4.js') }}"></script>
+        <script src="{{ asset('bundles/pffbourse/templates/lib/raphael/raphael.js') }}"></script>
+        <script src="{{ asset('bundles/pffbourse/templates/lib/morris/morris.min.js') }}"></script>
+
+        <style>
+            #tutoriel,#tutoriel2{
+                float: left;
+                width: 785px;
+                height: 200px;
+                border: 1px solid #000;
+
+            }
+        </style>
+        <style>
+            #tutoriel2{
+                margin-top: 5%;
+                float: left;
+                width: 785px;
+                height: 200px;
+                border: 1px solid #000;
+
+            }
+            .titre{
+                text-align: center;
+                font-size: 20px;
+            }
+        </style>
+        <div class="titre"><b><u>Nombre de beneficiaires par universités et par facultés</u></b></div>
+        <br>
+        <div id="tutoriel"></div>
+        <script >
+
+            Morris.Bar({
+                element: 'tutoriel',
+                data:[
+                    {% for iug in iug %}
+                    {'tuto':'IUG', value: {{ iug }}},
+                    {% endfor %}
+                    {% for fst in fst %}
+                    {'tuto':'FST', value: {{ fst }}},
+                    {% endfor %}
+                    {% for fseg in fseg %}
+                    {'tuto':'FSEG', value: {{ fseg }}},
+                    {% endfor %}
+                    {% for fdpri in fdpri %}
+                    {'tuto':'FDPRI', value: {{ fdpri }}},
+                    {% endfor %}
+                    {% for fdpu in fdpu %}
+                    {'tuto':'FDPU', value: {{ fdpu }}},
+                    {% endfor %}
+                    {% for fmp in fmp %}
+                    {'tuto':'FMP', value: {{ fmp }}},
+                    {% endfor %}
+                    {% for fmpos in fmpos %}
+                    {'tuto':'FMPOS', value: {{ fmpos }}},
+                    {% endfor %}
+                    {% for fhg in fhg %}
+                    {'tuto':'FHG', value: {{ fhg }}},
+                    {% endfor %}
+
+                ],
+                xkey:'tuto',
+                ykeys: ['value'],
+                labels: ['Beneficiaire']
+            });
+
+        </script>
+        <div id="tutoriel2"></div>
+        <script >
+            Morris.Line({
+                element: 'tutoriel2',
+                data:[
+                    {'tuto':'2014', value: 0},
+                    {% for an2015 in nbb2015 %}
+                    {'tuto':'2015', value: {{ an2015 }}},
+                    {% endfor %}
+                    {% for an2016 in nbb2016 %}
+                    {'tuto':'2016', value: {{ an2016 }}},
+                    {% endfor %}
+                    {% for an2017 in nbb2017 %}
+                    {'tuto':'2017', value: {{ an2017 }}},
+                    {% endfor %}
+                ],
+                xkey:'tuto',
+                ykeys: ['value'],
+                labels: ['Beneficiaire']
+            });
+
+        </script>
+
+        <style>
+            #tutoriel3{
+                margin-top: 5%;
+                float: left;
+                width: 785px;
+                height: 200px;
+                border: 1px solid #000;
+
+            }
+        </style>
+        <div id="tutoriel3"></div>
+        <script >
+            Morris.Donut({
+                element: 'tutoriel3',
+                data:[
+
+                    {'label':'IUG', value: 10},
+                    {'label':'FST', value: 148},
+                    {'label':'FSEG', value: 150},
+                    {'label':'FMP', value: 198},
+                    {'label':'FMPOS', value: 30},
+                    {'label':'FLASH', value: 10},
+
+                ],
+            });
+
+        </script>
+        <!-- end: Content -->
+    </div><!--/fluid-row-->
+{% endblock %}

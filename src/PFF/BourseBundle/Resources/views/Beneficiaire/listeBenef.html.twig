@@ -1,0 +1,128 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+
+    <link rel="stylesheet" href="{{ asset('bundles/pffbourse/templates/css/modal/bootstrap.min.css') }}">
+    <div id="content" class="span10">
+
+
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a href="{{ path('index') }}">Acceuil</a>
+                <i class="icon-angle-right"></i>
+            </li>
+            <li><a href="#">Table Bénéficiaire</a></li>
+        </ul>
+
+        <div class="row-fluid sortable">
+            <div class="box span12">
+                <div class="box-header" data-original-title>
+                    <h2><i class="halflings-icon user"></i><span class="break"></span>Liste des bénéficiaires</h2>
+                    <div class="box-icon">
+                        <a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <table class="table table-striped table-bordered bootstrap-datatable datatable">
+                        <a style="margin-left: 80%; margin-top: 2%;" class="btn btn-primary"
+                           href="{{ path('beneficiaire_ajout') }}"><i class="icon-edit"></i><span class="hidden-tablet"> Ajout Bénéficiaire </span></a>
+                        {% for flash_message in app.session.flashBag.get('infosup') %}
+                            <div class="alert alert-danger">
+                                {{ flash_message }}
+                            </div>
+                        {% endfor %}
+                        {% for flash_message in app.session.flashBag.get('info') %}
+                            <div class="alert alert-success">
+                                {{ flash_message }}
+                            </div>
+                        {% endfor %}
+                        {% for flash_message in app.session.flashBag.get('notice') %}
+                            <div class="alert alert-success">
+                                {{ flash_message }}
+                            </div>
+                        {% endfor %}
+                        {% for flash_message in app.session.flashBag.get('alerte') %}
+                            <div class="alert alert-success">
+                                {{ flash_message }}
+                            </div>
+                        {% endfor %}
+                        <thead>
+                        <tr>
+                            <th>Numèro Matricule</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Numèro Tel</th>
+                            <th>Email</th>
+                            <th>Faculté</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for beneficiaire in beneficiaire %}
+                            <tr>
+                                <td>{{ beneficiaire.numMlle }}</td>
+                                <td class="center">{{ beneficiaire.Nom }}</td>
+                                <td class="center">{{ beneficiaire.Prenom }}</td>
+                                <td class="center">{{ beneficiaire.NumTel }}</td>
+                                <td class="center">{{ beneficiaire.Email }}</td>
+                                <td class="center">{{ beneficiaire.faculte }}</td>
+                                <td class="center">
+
+                                    <!--li>
+                                        <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Bénéficiaires </span></a>
+                                        <ul>
+                                            <li><a class="submenu" href="{{ path('benef_fonds_hist', { 'id': beneficiaire.id }) }}"><i class="icon-file-alt"></i><span
+                                                            class="hidden-tablet"> Détail </span></a></li>
+                                            <li><a class="submenu" href="{{ path('beneficiaire_modifier', { 'id': beneficiaire.id }) }}"><i class="icon-file-alt"></i><span
+                                                            class="hidden-tablet"> Modifier le bénéficiaire </span></a></li>
+                                            <li><a class="submenu" href="{{ path('formation_ajout', { 'id': beneficiaire.id }) }}"><i class="icon-file-alt"></i><span
+                                                            class="hidden-tablet"> Attribuer une formation </span></a></li>
+                                            <li><a class="submenu" href="{{ path('historique_ajout', { 'id': beneficiaire.id }) }}"><i class="icon-file-alt"></i><span
+                                                            class="hidden-tablet"> Attribuer un fonds </span></a></li>
+                                            <li><a class="submenu" href="{{ path('beneficiaire_supprime', { 'id': beneficiaire.id }) }}" onclick="return(confirm('Voulez vous Supprimer ?'));"><i class="icon-file-alt"></i><span
+                                                            class="hidden-tablet"> Supprimer </span></a></li>
+                                        </ul>
+                                    </li-->
+
+
+                                    <a class="btn btn-info"
+                                       href="{{ path('benef_fonds_hist', { 'id': beneficiaire.id }) }}" title="detail">
+                                        <i class="halflings-icon white zoom-in"></i>
+                                    </a>
+                                    <a class="btn btn-warning"
+                                       href="{{ path('beneficiaire_modifier', { 'id': beneficiaire.id }) }}">
+                                        <i class="halflings-icon white edit" title="Modifier un bénéficiaire"></i>
+                                    </a>
+                                    <a class="btn btn-primary"
+                                       href="{{ path('formation_ajout', { 'id': beneficiaire.id }) }}" title="Attribuer une formation">
+                                        <i class="halflings-icon white edit"></i>
+                                    </a>
+                                    <a class="btn btn-primary"
+                                       href="{{ path('historique_ajout', { 'id': beneficiaire.id }) }}">
+                                        <i class="halflings-icon white edit" title="Attribuer un fonds"></i>
+                                    </a>
+
+                                    <a class="btn btn-danger"
+                                       href="{{ path('beneficiaire_supprime', { 'id': beneficiaire.id }) }}"
+                                       onclick="return(confirm('Voulez vous Supprimer ?'));" title="suprimer">
+                                        <i class="halflings-icon white trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div><!--/span-->
+
+        </div><!--/row-->
+
+    <!-- end: Content -->
+    </div><!--/#content.span10-->
+
+
+    <script src="{{ asset('bundles/pffbourse/templates/css/modal/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/pffbourse/templates/css/modal/bootstrap.min.js') }}"></script>
+{% endblock %}

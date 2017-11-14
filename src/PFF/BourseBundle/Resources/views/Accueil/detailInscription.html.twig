@@ -1,0 +1,53 @@
+{% extends "::base.html.twig" %}
+
+
+{% block body %}
+
+    <link rel="stylesheet" media="print" href="{{ asset('bundles/pffbourse/templates/css/utilImprimer.css') }}" >
+    {#{ form(form) }#}
+    <!-- start: Content -->
+    <div id="content" class="span10">
+
+
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a class="accueil" href="{{ path('index') }}">Accueil</a>
+                <i class="icon-angle-right"></i>
+            </li>
+            <li>
+                <i class="icon-edit"></i>
+                <a class="inscription" href="#">Inscription</a>
+            </li>
+        </ul>
+
+
+        <div class="row-fluid sortable">
+            <div class="box span6">
+                <div class="box-header" data-original-title>
+                    <h2><i class="halflings-icon edit"></i><span class="break"></span>Détails de l'inscription</h2>
+                    <div class="box-icon">
+                        <a href="#" onclick="javascript:window.print()" class="refImprimer" >Imprimer</a>
+                       <!-- <a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>-->
+                    </div>
+                </div>
+                <div class="box-content">
+                    <p>Votre inscription a été effectuée avec succès !!!<br>
+                    Pour vous connectez veuiller saisir les identifiants ci-dessous:<br>
+                        Nom d'utilisateur:<b>{{ user }}</b><br>
+                        Mot de passe:<b>{{ pass }}</b>
+                    </p>
+
+                </div>
+            </div><!--/span-->
+
+        </div><!--/row-->
+
+
+    </div><!--/.fluid-container-->
+
+    <!-- end: Content -->
+
+{% endblock %}

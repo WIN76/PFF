@@ -1,0 +1,68 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <div id="content" class="span10">
+
+
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a href="{{ path('index') }}">Acueil</a>
+                <i class="icon-angle-right"></i>
+            </li>
+            <li><a href="#">Faculté</a></li>
+        </ul>
+
+        <div class="row-fluid sortable">
+            <div class="box span12">
+                <div class="box-header" data-original-title>
+                    <h2><i class="halflings-icon user"></i><span class="break"></span>Modification des Facultés</h2>
+                    <div class="box-icon">
+                        <a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <form method="post" class="form-horizontal">
+                        <fieldset>
+
+                            <div class="control-group">
+                                <label class="control-label" for="focus">Code Faculté </label>
+                                <div class="controls">
+                                    {{ form_widget(form.codeFac) }}
+                                    {{ form_errors(form.codeFac) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputSuccess">Nom Faculté </label>
+                                <div class="controls">
+                                    {{ form_widget(form.nomFac) }}
+                                    {{ form_errors(form.nomFac) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputSuccess">Université </label>
+                                <div class="controls">
+                                    {{ form_widget(form.universite) }}
+                                    {{ form_errors(form.universite) }}
+                                </div>
+                            </div>
+                            {{ form_rest(form) }}
+                            <div class="form-actions">
+                                <input class="btn btn-primary" type="submit" value="Modifier">
+                                <input class="btn btn-warning" type="reset" value="Annuler">
+                            </div>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div><!--/span-->
+
+        </div><!--/row-->
+
+    <!-- end: Content -->
+    </div><!--/#content.span10-->
+
+
+
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends "::base.html.twig" %}
+
+
+{% block body %}
+
+
+    {#{ form(form) }#}
+
+
+    <!-- start: Content -->
+    <div id="content" class="span10">
+
+
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a href="{{ path('index') }}">Accueil</a>
+                <i class="icon-angle-right"></i>
+            </li>
+            <li>
+                <i class="icon-edit"></i>
+                <a href="#">Formations</a>
+            </li>
+        </ul>
+
+
+        <div class="row-fluid sortable">
+            <div class="box span12">
+                <div class="box-header" data-original-title>
+                    <h2><i class="halflings-icon edit"></i><span class="break"></span>Saisie des Formations</h2>
+                    <div class="box-icon">
+                        <a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <form method="post" action="{{ path('formation_ajout',{ 'id': id }) }}" class="form-horizontal">
+                        {% for flash_message in app.session.flashBag.get('info') %}
+                            <div class="alert alert-success">
+                                {{ flash_message }}
+                            </div>
+                        {% endfor %}
+                        <fieldset>
+                            Nom:<input  disabled id="disabledInput" value='{{ nom }}' disabled="">&nbsp;&nbsp;&nbsp;
+                            Prenom:<input  disabled id="disabledInput" value='{{ prenom }}' disabled=""><br><br>
+                            <div class="control-group hidden">
+                                <label class="control-label" for="inputSuccess"><strong>Beneficiaire</strong></label>
+                                <div class="controls">
+                                    {{ form_widget(form.Beneficiaire) }}
+                                    {{ form_errors(form.Beneficiaire) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputSuccess"><strong>Diplome</strong></label>
+                                <div class="controls">
+                                    {{ form_widget(form.diplome) }}<strong> *</strong>
+                                    {{ form_errors(form.diplome) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputSuccess"><strong>Montant
+                                        Formation</strong></label>
+                                <div class="controls">
+                                    {{ form_widget(form.montF) }}<strong> *</strong>
+                                    {{ form_errors(form.montF) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputSuccess"><strong>Lieu Formation</strong></label>
+                                <div class="controls">
+                                    {{ form_widget(form.lieuF) }}<strong> *</strong>
+                                    {{ form_errors(form.lieuF) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputSuccess"><strong>Date Début</strong></label>
+                                <div class="controls">
+                                    {{ form_widget(form.dateDebut) }}<strong> *</strong>
+                                    {{ form_errors(form.dateDebut) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputSuccess"><strong>Date Fin</strong></label>
+                                <div class="controls">
+                                    {{ form_widget(form.dateFin) }}<strong> *</strong>
+                                    {{ form_errors(form.dateFin) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputSuccess"><strong>Spécialité</strong></label>
+                                <div class="controls">
+                                    {{ form_widget(form.specialite) }}<strong> *</strong>
+                                    {{ form_errors(form.specialite) }}
+                                </div>
+                            </div>
+                            {{ form_rest(form) }}
+                            <div class="form-actions">
+                                <input class="btn btn-primary" type="submit" value="Ajouter">
+                                <input class="btn btn-warning" type="reset" value="Annuler">
+                            </div>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div><!--/span-->
+
+        </div><!--/row-->
+
+
+    </div><!--/.fluid-container-->
+
+    <!-- end: Content -->
+
+
+{% endblock %}

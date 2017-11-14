@@ -1,0 +1,74 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    {#{ form(form) }#}
+    <!-- start: Content -->
+    <div id="content" class="span10">
+
+
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a href="{{ path('index') }}">Accueil</a>
+                <i class="icon-angle-right"></i>
+            </li>
+            <li>
+                <i class="icon-edit"></i>
+                <a href="#">Modification</a>
+            </li>
+        </ul>
+
+
+        <div class="row-fluid sortable">
+            <div class="box span12">
+                <div class="box-header" data-original-title>
+                    <h2><i class="halflings-icon edit"></i><span class="break"></span>Modification des Fonds</h2>
+                    <div class="box-icon">
+                        <a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+                    </div>
+                </div>
+
+                <div class="box-content">
+                    <form class="form-horizontal" method="POST">
+                        <fieldset>
+                            <div class="control-group">
+                                <label class="control-label" for="inputSuccess"><strong>Montant</strong></label>
+                                <div class="controls">
+                                    {{ form_widget(form.montant) }}
+                                    {{ form_errors(form.montant) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputSuccess"><strong>Année</strong></label>
+                                <div class="controls">
+                                    {{ form_widget(form.annee) }}
+                                    {{ form_errors(form.annee) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputSuccess"><strong>Type</strong></label>
+                                <div class="controls">
+                                    {{ form_widget(form.type) }}
+                                    {{ form_errors(form.type) }}
+                                </div>
+                            </div>
+                            {{ form_rest(form) }}
+                            <div class="form-actions">
+                                <input class="btn btn-primary" type="submit" value="Ajouter">
+                                <input class="btn btn-warning" type="reset" value="Annuler">
+                            </div>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div><!--/span-->
+
+        </div><!--/row-->
+
+    <!-- end: Content -->
+    </div><!--/#content.span10-->
+
+{% endblock %}

@@ -1,0 +1,221 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <div id="content" class="span10">
+
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a href="{{ path('index') }}">Home</a>
+                <i class="icon-angle-right"></i>
+            </li>
+            <li><a href="#">Les details des Fonds </a></li>
+        </ul>
+
+        <div class="row-fluid sortable">
+            <div class="box span12">
+                <div class="box-header" data-original-title>
+                    <h2><i class="halflings-icon user"></i><span class="break"></span>Les details Fonds</h2>
+                    <div class="box-icon">
+                        <a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    {% for h in bform %}
+                    <table>
+                        <tr>
+                            <th>Boursier </th>
+                            <th class="center">{{ h.Beneficiaire.numMlle }}</th>
+                        </tr>
+                        <tr>
+                            <th>Nom </th>
+                            <th class="center">{{ h.Beneficiaire.prenom }}</th>
+                        </tr>
+                        <tr>
+                            <th>Prenom </th>
+                            <th class="center">{{ h.Beneficiaire.nom }}</th>
+                        </tr>
+                    </table>
+                    <table class="table table-striped table-bordered bootstrap-datatable datatable">
+                       {% for flash_message in app.session.flashBag.get('info') %}
+                            <div class="alert alert-success">
+                                {{ flash_message }}
+                            </div>
+                        {% endfor %}
+                        {% for flash_message in app.session.flashBag.get('notice') %}
+                            <div class="alert alert-success">
+                                {{ flash_message }}
+                            </div>
+                        {% endfor %}
+                        {% for flash_message in app.session.flashBag.get('alerte') %}
+                            <div class="alert alert-success">
+                                {{ flash_message }}
+                            </div>
+                        {% endfor %}
+                            <thead>
+                        <tr>
+                            <th>Date d'octroit</th>
+                            <th>Annee</th>
+                            <th>Type</th>
+                            <th>Montant
+                            </th>
+                        </tr>
+
+                            </thead>
+                    </table>
+                                <div id="content" class="span10">
+                                    <ul class="breadcrumb">
+                                        <li>
+                                            <i class="icon-home"></i>
+                                            <a href="{{ path('index') }}">Home</a>
+                                            <i class="icon-angle-right"></i>
+                                        </li>
+                                        <li><a href="#">Table Formation</a></li>
+                                    </ul>
+
+                                    <div class="row-fluid sortable">
+
+                                        <div class="box span6">
+                                            <div class="box-header" data-original-title>
+                                                <h2><i class="halflings-icon user"></i><span class="break"></span>Formations</h2>
+
+                                            </div>
+
+                                            <div class="box-content">
+                                                <b>Matricule</b>: {{ h.beneficiaire.NumMlle }} <br>
+                                                <b>Nom</b>: {{ h.beneficiaire.Nom }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Prenom</b>: {{ h.beneficiaire.Prenom }}<br>
+                                                <b>Date de Naissance</b>: {{ h.beneficiaire.DateNais |date('d/m/Y') }}<br>
+                                                <b>Adresse</b>: {{ h.beneficiaire.Adresse }}<br>
+                                                <b>Telphone</b>: {{ h.beneficiaire.NumTel }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Email</b>: {{ h.beneficiaire.Email }}<br>
+                                                <b>Niveau</b>: {{ h.beneficiaire.Niveau }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Statut</b>: {{ h.beneficiaire.Statut }}<br>
+                                                <b>Faculte</b>: {{ h.beneficiaire.Faculte }}<br>
+                                                <h2 style="text-align: center;"><u>Formations</u> </h2>
+                                                <table class="table ">
+
+                                                    {% set sommeFormation=0 %}
+                                                    <thead>
+                                                    <tr>
+
+                                                        <th>Diplome</th>
+                                                        <th>Date debut</th>
+                                                        <th>Date Fin</th>
+                                                        <th>Montant</th>
+                                                        <th>Lieu</th>
+                                                        <th>Specialite</th>
+                                                    </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                    {% for f in Formation %}
+                                                        <tr>
+                                                            <td class="center">{{ f.Diplome }}</td>
+                                                            <td class="center">{{ f.DateDebut }}</td>
+                                                            <td class="center">{{ f.DateFin }}</td>
+                                                            <td class="center">{{ f.MontF }}</td>
+                                                            <td class="center">{{ f.LieuF }}</td>
+                                                            <td class="center">{{ f.Specialite }}</td>
+                                                        </tr>
+                                                        {% set sommeFormation = sommeFormation+f.MontF %}
+                                                    {% endfor %}
+
+                                                    </tbody>
+                                                </table>
+
+                                                le cout de la formation s'eleve a: {{ sommeFormation }}F CFA
+                                            </div>
+
+                                        </div><!--/span-->
+
+
+                                        <div class="box span6">
+                                            <div class="box-header" data-original-title>
+                                                <h2><i class="halflings-icon user"></i><span class="break"></span>Fonds</h2>
+                                                <div class="box-icon">
+                                                    <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+                                                </div>
+                                            </div>
+                                            <h2 style="text-align: center;"><u>les fonds associes a la formation</u> </h2>
+                                            <table class="table table-striped table-bordered ">
+                                                {% for flash_message in app.session.flashBag.get('info') %}
+                                                    <div class="alert alert-success">
+                                                        {{ flash_message }}
+                                                    </div>
+                                                {% endfor %}
+                                                {% for flash_message in app.session.flashBag.get('notice') %}
+                                                    <div class="alert alert-success">
+                                                        {{ flash_message }}
+                                                    </div>
+                                                {% endfor %}
+                                                {% for flash_message in app.session.flashBag.get('alerte') %}
+                                                    <div class="alert alert-success">
+                                                        {{ flash_message }}
+                                                    </div>
+                                                {% endfor %}
+
+                                                {% set sommfonds=0 %}
+                                                <thead>
+                                                <tr>
+
+                                                    <th>Anne</th>
+                                                    <th>Type</th>
+                                                    <th>Montant</th>
+                                                    <th>Date</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for b in bform %}
+                                                    <tr>
+                                                        <td class="center">{{ b.Fonds.Annee }}</td>
+                                                        <td class="center">{{ b.Fonds.Type }}</td>
+                                                        <td class="center">{{ b.Fonds.Montant }}</td>
+                                                        <td class="center">{{ b.date  | date('d/m/Y')}}</td>
+                                                    </tr>
+                                                    {% set sommfonds=sommfonds+b.Fonds.Montant %}
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                            la somme de ses fonds est: {{ sommfonds }} F CFA
+                                        </div>
+
+                                    </div><!--/span-->
+
+                                    <h1>{% set totale=sommeFormation+sommfonds %}
+                                        Le cout total est: {{ totale }} F CFA</h1>
+                                </div><!--/row-->
+                </div><!--/.fluid-container-->
+
+                <!-- end: Content -->
+            </div><!--/#content.span10-->
+        </div><!--/fluid-row-->
+                            <th>Actions</th>
+                        <tbody>
+                            <tr>
+                                <td class="center">{{ h.date |date ('d/m/Y') }}</td>
+                                <td class="center">{{ h.Fonds.annee }}</td>
+                                <td class="center">{{ h.Fonds.type }}</td>
+                                <td class="center">{{ h.Fonds.montant }}</td>
+                                <td class="center">
+                                    <a class="btn btn-success"
+                                       href="{{ path('formation_detail', { 'id': h.Beneficiaire.id }) }}">
+                                        <i class="halflings-icon white zoom-in"></i>
+                                    </a>
+                                    <a class="btn btn-info"
+                                       href="{{ path('formation_modifier', { 'id': h.Beneficiaire.id }) }}">
+                                        <i class="halflings-icon white edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger"
+                                       href="{{ path('formation_supprime', { 'id':h.Beneficiaire.id }) }}"
+                                       onclick="return(confirm('Voulez vous Supprimer ?'));">
+                                        <i class="halflings-icon white trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+
+    <!-- end: Content -->
+    </div><!--/#content.span10-->
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <div id="content" class="span10">
+
+
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a href="{{ path('index') }}">Acueil</a>
+                <i class="icon-angle-right"></i>
+            </li>
+            <li><a href="#">Les Bénéficiaires > Infos Bénéficiaire</a></li>
+        </ul>
+
+        <div class="row-fluid sortable">
+            <div class="box span12">
+                <div class="box-header" data-original-title>
+                    <h2><i class="halflings-icon user"></i><span class="break"></span>Infos Beneficiaire</h2>
+                    <div class="box-icon">
+                        <a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <table>
+                        <tr>
+                            <td>Matricule:</td>
+                            <td>{{ beneficiaire.NumMlle }}</td>
+                        </tr>
+                        <tr>
+                            <td>Nom:</td>
+                            <td>{{ beneficiaire.Nom }}</td>
+                        </tr>
+                        <tr>
+                            <td>Prénom:</td>
+                            <td>{{ beneficiaire.Prenom }}</td>
+                        </tr>
+                        <tr>
+                            <td>Date de Naissance:</td>
+                            <td>{{ beneficiaire.DateNais|date('d/m/y') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Adresse:</td>
+                            <td>{{ beneficiaire.Adresse }}</td>
+                        </tr>
+                        <tr>
+                            <td>N° Téléphone:</td>
+                            <td>{{ beneficiaire.NumTel }}</td>
+                        </tr>
+                        <tr>
+                            <td>Sexe:</td>
+                            <td>{{ beneficiaire.Sexe }}</td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td>{{ beneficiaire.Email }}</td>
+                        </tr>
+                        <tr>
+                            <td>Niveau:</td>
+                            <td>{{ beneficiaire.Niveau }}</td>
+                        </tr>
+                        <tr>
+                            <td>Statut:</td>
+                            <td>{{ beneficiaire.Statut }}</td>
+                        </tr>
+                        <tr>
+                            <td>Faculté:</td>
+                            <td>{{ beneficiaire.Faculte }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div><!--/span-->
+
+        </div><!--/row-->
+
+    <!-- end: Content -->
+    </div><!--/#content.span10-->
+
+{% endblock %}

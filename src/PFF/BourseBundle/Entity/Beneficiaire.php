@@ -1,0 +1,447 @@
+<?php
+
+namespace PFF\BourseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Beneficiaire
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="PFF\BourseBundle\Entity\BeneficiaireRepository")
+ */
+class Beneficiaire
+{
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    /**
+     * @ORM\OneToMany(targetEntity="PFF\BourseBundle\Entity\Historique",
+     mappedBy="beneficiaire")
+    */
+    private $historiques;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="PFF\BourseBundle\Entity\Faculte")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $faculte;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="NumMlle", type="string", length=15)
+     */
+    private $numMlle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Nom", type="string", length=50)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Prenom", type="string", length=50)
+     */
+    private $prenom;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="DateNais", type="date")
+     */
+    private $dateNais;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Adresse", type="string", length=60)
+     */
+    private $adresse;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="NumTel", type="integer")
+     */
+    private $numTel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Sexe", type="string", length=10)
+     */
+    private $sexe;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Email", type="string", length=40)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Niveau", type="string", length=15)
+     */
+    private $niveau;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Statut", type="string", length=20)
+     */
+    private $statut;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="AnEnr", type="string", length=10)
+     */
+    private $anenr;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set numMlle
+     *
+     * @param string $numMlle
+     * @return Beneficiaire
+     */
+    public function setNumMlle($numMlle)
+    {
+        $this->numMlle = $numMlle;
+
+        return $this;
+    }
+
+    /**
+     * Get numMlle
+     *
+     * @return string
+     */
+    public function getNumMlle()
+    {
+        return $this->numMlle;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return Beneficiaire
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     * @return Beneficiaire
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set dateNais
+     *
+     * @param \DateTime $dateNais
+     * @return Beneficiaire
+     */
+    public function setDateNais($dateNais)
+    {
+        $this->dateNais = $dateNais;
+
+        return $this;
+    }
+
+    /**
+     * Get dateNais
+     *
+     * @return \DateTime
+     */
+    public function getDateNais()
+    {
+        return $this->dateNais;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param string $adresse
+     * @return Beneficiaire
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set numTel
+     *
+     * @param integer $numTel
+     * @return Beneficiaire
+     */
+    public function setNumTel($numTel)
+    {
+        $this->numTel = $numTel;
+
+        return $this;
+    }
+
+    /**
+     * Get numTel
+     *
+     * @return integer
+     */
+    public function getNumTel()
+    {
+        return $this->numTel;
+    }
+
+    /**
+     * Set sexe
+     *
+     * @param string $sexe
+     * @return Beneficiaire
+     */
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    /**
+     * Get sexe
+     *
+     * @return string
+     */
+    public function getSexe()
+    {
+        return $this->sexe;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Beneficiaire
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set niveau
+     *
+     * @param string $niveau
+     * @return Beneficiaire
+     */
+    public function setNiveau($niveau)
+    {
+        $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    /**
+     * Get niveau
+     *
+     * @return string
+     */
+    public function getNiveau()
+    {
+        return $this->niveau;
+    }
+
+    /**
+     * Set statut
+     *
+     * @param string $statut
+     * @return Beneficiaire
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * Get statut
+     *
+     * @return string
+     */
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * Set faculte
+     *
+     * @param \PFF\BourseBundle\Entity\Faculte $faculte
+     * @return Beneficiaire
+     */
+    public function setFaculte(\PFF\BourseBundle\Entity\Faculte $faculte)
+    {
+        $this->faculte = $faculte;
+
+        return $this;
+    }
+
+    /**
+     * Get faculte
+     *
+     * @return \PFF\BourseBundle\Entity\Faculte
+     */
+    public function getFaculte()
+    {
+        return $this->faculte;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->historiques = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add historique
+     *
+     * @param \PFF\BourseBundle\Entity\Historique $historique
+     *
+     * @return Beneficiaire
+     */
+    public function addHistorique(\PFF\BourseBundle\Entity\Historique $historique)
+    {
+        $this->historiques[] = $historique;
+
+        return $this;
+    }
+
+    /**
+     * Remove historique
+     *
+     * @param \PFF\BourseBundle\Entity\Historique $historique
+     */
+    public function removeHistorique(\PFF\BourseBundle\Entity\Historique $historique)
+    {
+        $this->historiques->removeElement($historique);
+    }
+
+    /**
+     * Get historiques
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getHistoriques()
+    {
+        return $this->historiques;
+    }
+
+     public function __toString(){
+        return $this->numMlle;
+    }
+
+
+    /**
+     * Set anenr
+     *
+     * @param string $anenr
+     *
+     * @return Beneficiaire
+     */
+    public function setAnenr($anenr)
+    {
+        $this->anenr = $anenr;
+
+        return $this;
+    }
+
+    /**
+     * Get anenr
+     *
+     * @return string
+     */
+    public function getAnenr()
+    {
+        return $this->anenr;
+    }
+}

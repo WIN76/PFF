@@ -1,0 +1,78 @@
+<?php
+
+namespace PFF\BourseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Historique
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="PFF\BourseBundle\Entity\HistoriqueRepository")
+ */
+class Historique
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PFF\BourseBundle\Entity\Beneficiaire",
+     inversedBy="historiques")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $beneficiaire;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PFF\BourseBundle\Entity\Fonds",
+     inversedBy="historiques")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $fonds;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Date", type="datetime")
+     */
+    private $date;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Historique
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+}

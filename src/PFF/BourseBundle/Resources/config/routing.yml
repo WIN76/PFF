@@ -1,0 +1,172 @@
+pff_bourse_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: PFFBourseBundle:Default:indextest }
+
+layout:
+    path:     /layout
+    defaults: { _controller: PFFBourseBundle:Default:layout }
+
+index:
+    path:     /
+    defaults: { _controller: PFFBourseBundle:Default:listeBene }
+
+widgets:
+    path:     /widgets
+    defaults: { _controller: PFFBourseBundle:Default:widgets }
+
+gallery:
+    path:     /gallery
+    defaults: { _controller: PFFBourseBundle:Default:gallery }
+
+beneficiaire_ajout:
+    path:     /ajout
+    defaults: { _controller: PFFBourseBundle:Beneficiaire:ajout }
+
+beneficiaire_liste:
+    path:     /listeBenef
+    defaults: { _controller: PFFBourseBundle:Beneficiaire:listeBenef }
+
+beneficiaire_modifier:
+  pattern: /editBenef/{id}
+  defaults: { _controller: PFFBourseBundle:Beneficiaire:editBenef }
+  requirements:
+       id: \d+
+
+beneficiaire_supprime:
+  pattern: /suppBenef/{id}
+  defaults: { _controller: PFFBourseBundle:Beneficiaire:suppBenef }
+  requirements:
+       id: \d+
+
+beneficiaire_detail:
+  pattern: /detailBenef/{id}
+  defaults: { _controller: PFFBourseBundle:Beneficiaire:detailBenef }
+  requirements:
+       id: \d+
+
+universite_ajout:
+    path:     /adduniv
+    defaults: { _controller: PFFBourseBundle:Univ:adduniv }
+
+universite_liste:
+    path:     /listeUniv
+    defaults: { _controller: PFFBourseBundle:Univ:listeUniv }
+
+universite_modifier:
+  pattern: /editUniv/{id}
+  defaults: { _controller: PFFBourseBundle:Univ:editUniv }
+  requirements:
+       id: \d+
+
+universite_supprime:
+  pattern: /suppUniv/{id}
+  defaults: { _controller: PFFBourseBundle:Univ:suppUniv }
+  requirements:
+       id: \d+
+
+faculte_ajout:
+    path:     /formFact
+    defaults: { _controller: PFFBourseBundle:Faculte:formFact }
+
+faculte_liste:
+    path:     /listeFact
+    defaults: { _controller: PFFBourseBundle:Faculte:listeFact }
+
+faculte_modifier:
+  pattern: /editer/{id}
+  defaults: { _controller: PFFBourseBundle:Faculte:editer }
+  requirements:
+       id: \d+
+
+faculte_supprime:
+  pattern: /supprimer/{id}
+  defaults: { _controller: PFFBourseBundle:Faculte:supprimer }
+  requirements:
+       id: \d+
+
+fonds_ajout:
+    path:     /addFonds
+    defaults: { _controller: PFFBourseBundle:Fonds:addFonds }
+
+fonds_liste:
+    path:     /listeFonds
+    defaults: { _controller: PFFBourseBundle:Fonds:listeFonds }
+
+fonds_modifier:
+  pattern: /editFonds/{id}
+  defaults: { _controller: PFFBourseBundle:Fonds:editFonds }
+  requirements:
+       id: \d+
+
+fonds_supprime:
+  pattern: /suppFonds/{id}
+  defaults: { _controller: PFFBourseBundle:Fonds:suppFonds }
+  requirements:
+       id: \d+
+
+fonds_detail:
+  pattern: /detailFonds/{id}
+  defaults: { _controller: PFFBourseBundle:Fonds:detailFonds }
+  requirements:
+       id: \d+
+
+formation_ajout:
+    path:     /addForm/{id}
+    defaults: { _controller: PFFBourseBundle:Formation:addForm }
+    requirements:
+           id: \d+
+
+formation_liste:
+    path:     /listeForm
+    defaults: { _controller: PFFBourseBundle:Formation:listeForm }
+
+formation_modifier:
+  pattern: /editForm/{id}
+  defaults: { _controller: PFFBourseBundle:Formation:editForm }
+  requirements:
+       id: \d+
+
+formation_supprime:
+  pattern: /suppForm/{id}
+  defaults: { _controller: PFFBourseBundle:Formation:suppForm }
+  requirements:
+       id: \d+
+
+
+formation_detail:
+  pattern: /detailForm/{id}
+  defaults: { _controller: PFFBourseBundle:Formation:detailForm }
+  requirements:
+       id: \d+
+
+benef_form_hist:
+    path:     /bformhist
+    defaults: { _controller: PFFBourseBundle:Formation:bformation }
+
+historique_ajout:
+    path:     /addHist/{id}
+    defaults: { _controller: PFFBourseBundle:Historique:addHist }
+    requirements:
+           id: \d+
+
+benef_fonds_hist:
+    path:     /bfondshist/{id}
+    defaults: { _controller: PFFBourseBundle:Historique:bFondsHist }
+    requirements:
+           id: \d+
+
+historique_liste:
+    path:     /listeHist
+    defaults: { _controller: PFFBourseBundle:Historique:listBeneFond }
+
+pff_statistique:
+    path:     /statistique
+    defaults: { _controller: PFFBourseBundle:Beneficiaire:stat }
+
+pff_user:
+  path:     /inscription
+  defaults: { _controller: PFFBourseBundle:Test:test }
+
+pff_utilisateurIns:
+  path:     /detailIns
+  defaults: { _controller: PFFBourseBundle:Test:detail }

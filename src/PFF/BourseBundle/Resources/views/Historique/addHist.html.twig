@@ -1,0 +1,112 @@
+{% extends "::base.html.twig" %}
+
+
+{% block body %}
+
+
+    {#{ form(form) }#}
+
+
+    <!-- start: Content -->
+    <div id="content" class="span10">
+
+
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a href="{{ path('index') }}">Accueil</a>
+                <i class="icon-angle-right"></i>
+            </li>
+            <li>
+                <i class="icon-edit"></i>
+                <a href="#">Formations</a>
+            </li>
+        </ul>
+
+
+        <div class="row-fluid sortable">
+            <div class="box span12">
+                <div class="box-header" data-original-title>
+                    <h2><i class="halflings-icon edit"></i><span class="break"></span>Saisie des Fonds</h2>
+                    <div class="box-icon">
+                        <a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <form method="post" action="{{ path('historique_ajout',{ 'id': id }) }}" class="form-horizontal">
+                        {% for flash_message in app.session.flashBag.get('info') %}
+                            <div class="alert alert-success">
+                                {{ flash_message }}
+                            </div>
+                        {% endfor %}
+                        <fieldset>
+                            Prenom:<input disabled id="disabledInput" value="{{ prenom }}" disabled="">&nbsp;&nbsp;&nbsp;
+                            Nom:<input disabled id="disabledInput" value="{{ nom }}" disabled="">
+                            <br><br>
+                            <div class="control-group">
+                                <label class="control-label" for="inputSuccess"><strong>Date</strong></label>
+                                <div class="controls">
+                                    {{ form_widget(form.date,{ 'attr': { 'class': 'form-control datepicker' }}) }}
+                                    <strong> *</strong>
+                                    {{ form_errors(form.date) }}
+                                </div>
+                            </div>
+                            <div class="control-group hidden">
+                                <label class="control-label" for="inputSuccess"><strong>Beneficiaire</strong></label>
+                                <div class="controls">
+                                    {{ form_widget(form.beneficiaire) }}
+                                    <strong> *</strong>
+                                    {{ form_errors(form.beneficiaire) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputSuccess"><strong>Fonds
+                                        Formation</strong></label>
+                                <div class="controls">
+                                    {{ form_widget(form.fonds) }}<strong> *</strong>
+                                    {{ form_errors(form.fonds) }}
+                                </div>
+                            </div>
+                            {{ form_rest(form) }}
+                            <div class="form-actions">
+                                <input class="btn btn-primary" type="submit" value="Ajouter">
+                                <input class="btn btn-warning" type="reset" value="Annuler">
+                            </div>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div><!--/span-->
+
+        </div><!--/row-->
+
+
+    <!-- end: Content -->
+    </div><!--/#content.span10-->
+
+
+
+{% endblock %}
+
+{% block js %}
+    <script src="{{ asset('bundles/pffbourse/templates/js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('bundles/pffbourse/templates/js/bootstrap-datepicker.fr.js') }}"></script>
+
+    <script>
+
+        $(function() {
+            $('.datepicker').datepicker({
+                todayHighlight: true,
+                startDate: '-2d',
+                endDate: '+2d',
+                language : 'fr',
+                autoclose: true,
+                format: 'dd/mm/yyyy'
+            });
+
+
+        });
+    </script>
+
+{% endblock %}
